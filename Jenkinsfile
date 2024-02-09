@@ -13,7 +13,9 @@ pipeline{
 		}
 	}
 	post {
-		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'html/', reportFiles: 'files.html', reportName: 'Documentación', reportTitles: '']) 
-		archive "documentation.zip"
-	}
+        	success {
+            		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'html/', reportFiles: 'html/', reportName: 'Documentación', reportTitles: ''])
+            		archive "documentation.zip"
+        	}
+    	}
 }
