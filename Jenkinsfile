@@ -11,7 +11,7 @@ pipeline{
 				sh "doxygen"
 			}
 		}
-		stage('Archivar documentacion){
+		stage('Archivar documentacion'){
 			steps{
 				sh "zip documentation.zip -r html/*"
 			}
