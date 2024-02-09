@@ -16,6 +16,12 @@ pipeline{
 				sh "zip documentation.zip -r html/*"
 			}
 		}
+		stage('Analisis estatico de codigo'){
+			steps{
+				sh 'make cppcheck-xml'
+				recordIssues(tools: [cppCheck(pattern: 'reports/cppcheck/*.xml')])
+			}
+		}
 	}
 	post {
         	success {
