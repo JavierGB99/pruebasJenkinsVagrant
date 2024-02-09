@@ -11,10 +11,15 @@ pipeline{
 				sh "doxygen"
 			}
 		}
+		stage('Archivar documentacion){
+			steps{
+				sh "zip documentation.zip -r html/*"
+			}
+		}
 	}
 	post {
         	success {
-            		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'html/', reportFiles: 'html/', reportName: 'Documentación', reportTitles: ''])
+            		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'html/', reportFiles: 'files.html', reportName: 'Documentación', reportTitles: ''])
             		archive "documentation.zip"
         	}
     	}
