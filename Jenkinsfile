@@ -22,6 +22,12 @@ pipeline{
 				recordIssues(tools: [cppCheck(pattern: 'reports/cppcheck/*.xml')])
 			}
 		}
+	        stage('Tests unitarios') {
+	            steps {
+        	        sh 'make tests-xml'
+               		junit 'junit stdioRetention: '', testResults: 'tests/cmocka/*.xml''
+            }
+        }
 	}
 	post {
         	success {
