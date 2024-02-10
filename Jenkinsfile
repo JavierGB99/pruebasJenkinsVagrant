@@ -25,7 +25,7 @@ pipeline{
 	        stage('Tests unitarios') {
 	            steps {
         	        sh 'make tests-xml'
-               		junit 'junit stdioRetention: '', testResults: 'tests/cmocka/*.xml''
+               		junit stdioRetention: '', testResults: 'tests/cmocka/*.xml'
             }
         }
 	}
