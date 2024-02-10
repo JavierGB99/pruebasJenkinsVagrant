@@ -19,7 +19,7 @@ pipeline{
 		stage('Analisis estatico de codigo'){
 			steps{
 				sh 'make cppcheck-xml'
-				recordIssues(tools: [cppCheck(pattern: 'reports/cppcheck/*.xml')])
+				recordIssues enabledForFailure: true, failOnError: true, qualityGates: [[threshold: 1, type: 'TOTAL', unstable: false]], tools: [cppCheck(pattern: 'reports/cppcheck/*.xml')]
 			}
 		}
 	        stage('Tests unitarios') {
